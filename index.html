@@ -2,21 +2,75 @@
 <html>
 
 <head>
-  <title>Page Title</title>
+  <title>Rock, Paper, Scissors</title>
   <meta charset="UTF-8" />
 </head>
 
 <body>
   <script>
+    
+    var handGestures = ['Rock', 'Paper', 'Scissors'];
 
-    function playRound(playerSelection, computerSelection) {
-    // your code here!
+    function capitalizeString(str) {
+      if((str !== null) && (str.length > 0)){
+        return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase();
+      }
     }
 
-    const playerSelection = 'rock'
-    const computerSelection = computerPlay()
-    console.log(playRound(playerSelection, computerSelection))
-        
+    function computerPlay() {
+      return handGestures[Math.floor(Math.random() * handGestures.length)];
+    }
+
+    function playRound(playerSelection, computerSelection) {
+
+      const ROCK = 'Rock';
+      const PAPER = 'Paper';
+      const SCISSORS = 'Scissors';
+
+      // playerSelection = capitalizeString(playerSelection);
+      // computerSelection = capitalizeString(computerSelection);
+      console.log("Player: " + playerSelection);
+      console.log("Computer: " + computerSelection);
+
+      switch (true) {
+        case (playerSelection == ROCK) && (computerSelection == SCISSORS):
+        case (playerSelection == PAPER) && (computerSelection == ROCK):
+        case (playerSelection == SCISSORS) && (computerSelection == PAPER):
+          console.log('You Win! ' + playerSelection + ' beats ' + computerSelection);
+          break;
+        case (playerSelection == computerSelection):
+          console.log('Draw!');
+          break;
+        default:
+          console.log('You Lose! ' + computerSelection + ' beats ' + playerSelection);
+      }
+
+    }
+
+    function game() {
+
+      const GAMES = 5;
+      let playerSelection = "";
+      for (let i = 0; i < GAMES; i++) {
+
+        playerSelection = prompt("Please select: 'Rock', 'Paper', or 'Scissors'");
+        playerSelection = capitalizeString(playerSelection);        
+        while (!handGestures.includes(playerSelection)) {
+        console.log("Invalid Selection");
+        playerSelection = prompt("Please select: 'Rock', 'Paper', or 'Scissors'");
+        playerSelection = capitalizeString(playerSelection); 
+        }
+
+        playRound(playerSelection,computerPlay())
+
+      }
+    }
+
+    game();
+    // const playerSelection = 'scissors';
+    // const computerSelection = computerPlay();
+    // console.log(playRound(playerSelection, computerSelection));
+
   </script>
 </body>
 
