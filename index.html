@@ -9,9 +9,9 @@
 <body>
   <script>
 
-    const ROCK = 'Rock';
-    const PAPER = 'Paper';
-    const SCISSORS = 'Scissors';
+    const ROCK = 'rock';
+    const PAPER = 'paper';
+    const SCISSORS = 'scissors';
     var handGestures = [ROCK, PAPER, SCISSORS];
 
     function capitalizeString(str) {
@@ -25,6 +25,9 @@
     }
 
     function playRound(playerSelection, computerSelection) {
+
+      playerSelection = capitalizeString(playerSelection);
+      computerSelection = capitalizeString(computerSelection);
 
       console.log("Player: " + playerSelection);
       console.log("Computer: " + computerSelection);
@@ -50,13 +53,10 @@
       let playerSelection = "";
       for (let i = 0; i < GAMES; i++) {
 
-        playerSelection = prompt("Please select: Rock, Paper, or Scissors").toLowerCase();
-        playerSelection = capitalizeString(playerSelection);
-
+        playerSelection = prompt("Please select: Rock, Paper, or Scissors").toLowerCase();        
         while (!handGestures.includes(playerSelection)) {
           console.log("Invalid Selection");
           playerSelection = prompt("Please select: Rock, Paper, or Scissors").toLowerCase();
-          playerSelection = capitalizeString(playerSelection);
         }
 
         playRound(playerSelection, computerPlay())
